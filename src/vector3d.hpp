@@ -4,9 +4,9 @@
 #include <vector>
 
 struct Vector3d {
-    const double x;
-    const double y;
-    const double z;
+    double x;
+    double y;
+    double z;
     Vector3d(const double& X, const double& Y, const double& Z)
         : x(X), y(Y), z(Z) {}
     Vector3d() : x(0), y(0), z(0) {}

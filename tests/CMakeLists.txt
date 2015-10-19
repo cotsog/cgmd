@@ -1,12 +1,20 @@
+set(TEST_NAMES
+    vector3d_test lipid_test
+    )
+
 set(GTEST_ROOT $ENV{HOME}/local/gtest)
 include_directories(
     ${GTEST_ROOT}/include
     ../src
     )
-add_executable(vector3d_test vector3d_test.cpp)
-target_link_libraries(vector3d_test
-    mylipid
+set(test_libraries
     pthread
     ${GTEST_ROOT}/libgtest.a
     ${GTEST_ROOT}/libgtest_main.a)
-add_test(NAME vector3d_test COMMAND vector3d_test)
+
+foreach(TEST_NAME ${TEST_NAMES})
+    add_executable(${TEST_NAME} ${TEST_NAME}.cpp)
+    target_link_libraries(${TEST_NAME} mylipid ${test_libraries})
+    add_test(NAME ${TEST_NAME} COMMAND ${TEST_NAME})
+endforeach(TEST_NAME)
+
