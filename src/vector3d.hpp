@@ -1,5 +1,5 @@
-#ifndef __MY_POINT_HPP
-#define __MY_POINT_HPP
+#ifndef __MY_VECTOR3D_HPP
+#define __MY_VECTOR3D_HPP
 
 #include <vector>
 
@@ -21,4 +21,4 @@ Vector3d operator*(const Vector3d& lhs, const double& rhs);
 double dot(const Vector3d& lhs, const Vector3d& rhs);
 Vector3d cross(const Vector3d& lhs, const Vector3d& rhs);
 
-#endif /* __MY_POINT_HPP */
+#endif /* __MY_VECTOR3D_HPP */
