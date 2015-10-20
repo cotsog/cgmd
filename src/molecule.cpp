@@ -21,3 +21,11 @@ Vector3d& Molecule::coordinate(std::size_t index) {
 std::string& Molecule::type(std::size_t index) {
     return _types.at(index);
 }
+
+void Molecule::add_bond(std::size_t i, std::size_t j) {
+    _bonds.insert(bond_pair(i, j));
+}
+
+std::set<Molecule::bond_pair> Molecule::list_bonds() const {
+    return _bonds;
+}

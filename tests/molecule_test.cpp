@@ -13,6 +13,9 @@ protected:
         mol.type(0) = "HYDROPHILIC";
         mol.type(1) = "HYDROPHOBIC";
         mol.type(2) = "HYDROPHOBIC";
+
+        mol.add_bond(0,1);
+        mol.add_bond(1,2);
     }
 
     // virtual void TearDown() {}
@@ -38,6 +41,13 @@ TEST_F(MoleculeTest, Type) {
     EXPECT_EQ("HYDROPHILIC", mol.type(0));
     EXPECT_EQ("HYDROPHOBIC", mol.type(1));
     EXPECT_EQ("HYDROPHOBIC", mol.type(2));
+}
+
+TEST_F(MoleculeTest, Bond) {
+    std::set<Molecule::bond_pair> bonding_set;
+    bonding_set.insert(Molecule::bond_pair(0,1));
+    bonding_set.insert(Molecule::bond_pair(1,2));
+    EXPECT_EQ(bonding_set, mol.list_bonds());
 }
 
 }
