@@ -1,5 +1,5 @@
 set(TEST_NAMES
-    vector3d_test lipid_test
+    vector3d_test lipid_test molecule_test
     )
 
 set(GTEST_ROOT $ENV{HOME}/local/gtest)
