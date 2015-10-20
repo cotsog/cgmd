@@ -10,6 +10,8 @@ struct Vector3d {
     Vector3d(const double& X, const double& Y, const double& Z)
         : x(X), y(Y), z(Z) {}
     Vector3d() : x(0), y(0), z(0) {}
+    Vector3d(const Vector3d &vec)
+        : x(vec.x), y(vec.y), z(vec.z) {}
 };
 
 bool operator==(const Vector3d& lhs, const Vector3d& rhs);

@@ -7,6 +7,7 @@
 struct Lipid {
     Lipid();
     Lipid(const std::size_t num_beads);
+    Lipid(const Lipid &lipid);
     std::size_t num_beads() const;
     Vector3d& coordinate(std::size_t index);
     const Vector3d& coordinate(std::size_t index) const;

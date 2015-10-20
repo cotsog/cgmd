@@ -1,13 +1,18 @@
 #include "lipid.hpp"
 
+Lipid::Lipid() {
+    _coordinate = std::vector<Vector3d>();
+    _velocity = std::vector<Vector3d>();
+}
+
 Lipid::Lipid(const std::size_t num_beads) {
     _coordinate = std::vector<Vector3d>(num_beads);
     _velocity = std::vector<Vector3d>(num_beads);
 }
 
-Lipid::Lipid() {
-    _coordinate = std::vector<Vector3d>();
-    _velocity = std::vector<Vector3d>();
+Lipid::Lipid(const Lipid &lipid) {
+    _coordinate = lipid._coordinate;
+    _velocity = lipid._velocity;
 }
 
 std::size_t Lipid::num_beads() const {
