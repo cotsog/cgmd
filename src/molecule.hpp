@@ -15,7 +15,9 @@ struct Molecule {
 
     std::size_t num_beads() const;
     Vector3d& coordinate(std::size_t index);
+    const Vector3d& coordinate(std::size_t index) const;
     std::string& type(std::size_t index);
+    const std::string& type(std::size_t index) const;
     void add_bond(std::size_t i, std::size_t j);
     std::set<bond_pair> list_bonds() const;
 

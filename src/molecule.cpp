@@ -18,7 +18,15 @@ Vector3d& Molecule::coordinate(std::size_t index) {
     return _coordinates.at(index);
 }
 
+const Vector3d& Molecule::coordinate(std::size_t index) const {
+    return _coordinates.at(index);
+}
+
 std::string& Molecule::type(std::size_t index) {
+    return _types.at(index);
+}
+
+const std::string& Molecule::type(std::size_t index) const {
     return _types.at(index);
 }
 
