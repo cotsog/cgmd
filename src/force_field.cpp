@@ -48,3 +48,25 @@ double BondingForceField::calculate_energy(const CGSpace& space) const {
 
     return energy;
 }
+
+std::vector<Vector3d> BondingForceField::calculate_force(const CGSpace& space) const {
+    std::vector<Vector3d> force_list(space.num_beads(), Vector3d(0,0,0));
+
+    std::set<CGSpace::bond_pair> bond_list(space.list_bonds());
+    for (auto itr(bond_list.begin()); itr != bond_list.end(); ++itr) {
+        const std::size_t former((*itr).first),
+                          latter((*itr).second);
+        const BeadType former_type(space.type(former)),
+                       latter_type(space.type(latter));
+        const Vector3d vec(space.coordinate(latter) - space.coordinate(former));
+        const double R(norm(vec));
+        const double r(get_r(former_type, latter_type));
+        const double k(get_k(former_type, latter_type));
+
+        const double strength(2.0*k*(R-r)/R);
+        force_list.at(former) = vec * strength;
+        force_list.at(latter) = vec * strength * (-1);
+    }
+
+    return force_list;
+}

@@ -53,10 +53,22 @@ TEST_F(BondingForceFieldTest, CalculateEnergy) {
     EXPECT_EQ(2.0*pow(2-0.5,2), field.calculate_energy(space));
 }
 
-/*
 TEST_F(BondingForceFieldTest, CalculateForce) {
+    Molecule mol(2);
+    mol.type(0) = BeadType("Bead0");
+    mol.type(1) = BeadType("Bead1");
+    mol.coordinate(0) = Vector3d(0,0,0);
+    mol.coordinate(1) = Vector3d(2,0,0);
+    mol.add_bond(0,1);
+    CGSpace space;
+    space.add_molecule(mol);
+
+    const double strength(2.0*2.0*(2-0.5));
+    std::vector<Vector3d> expected(2);
+    expected.at(0) = Vector3d(1,0,0) * strength;
+    expected.at(1) = expected.at(0) * (-1);
+    EXPECT_EQ(expected, field.calculate_force(space));
 }
-*/
 
 }
 
