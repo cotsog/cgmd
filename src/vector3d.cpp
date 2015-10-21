@@ -32,6 +32,10 @@ Vector3d cross(const Vector3d& lhs, const Vector3d& rhs) {
             lhs.x*rhs.y-lhs.y*rhs.x);
 }
 
+double norm_sq(const Vector3d& vec) {
+    return pow(vec.x, 2) + pow(vec.y, 2) + pow(vec.z, 2);
+}
+
 double norm(const Vector3d& vec) {
-    return sqrt(pow(vec.x, 2) + pow(vec.y, 2) + pow(vec.z, 2));
+    return sqrt(norm_sq(vec));
 }

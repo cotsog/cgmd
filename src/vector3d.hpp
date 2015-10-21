@@ -23,6 +23,7 @@ Vector3d operator/(const Vector3d& lhs, const double& rhs);
 
 double dot(const Vector3d& lhs, const Vector3d& rhs);
 Vector3d cross(const Vector3d& lhs, const Vector3d& rhs);
+double norm_sq(const Vector3d& vec);
 double norm(const Vector3d& vec);
 
 #endif /* __MY_VECTOR3D_HPP */

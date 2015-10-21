@@ -38,8 +38,14 @@ TEST(Vector3dTest, Cross) {
     EXPECT_EQ(Vector3d(30,-20,-26), cross(y, x));
 }
 
+TEST(Vector3dTest, NormSquare) {
+    Vector3d x(0,1,0), y(1,-2,3);
+    EXPECT_EQ(1, norm_sq(x));
+    EXPECT_EQ(14, norm_sq(y));
+}
+
 TEST(Vector3dTest, Norm) {
-    Vector3d x(0,1,0), y(1,2,3);
+    Vector3d x(0,1,0), y(1,-2,3);
     EXPECT_EQ(1, norm(x));
     EXPECT_EQ(sqrt(14), norm(y));
 }
