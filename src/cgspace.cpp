@@ -39,7 +39,15 @@ Vector3d& CGSpace::coordinate(std::size_t index) {
     return _coordinates.at(index);
 }
 
+const Vector3d& CGSpace::coordinate(std::size_t index) const {
+    return _coordinates.at(index);
+}
+
 Vector3d& CGSpace::velocity(std::size_t index) {
+    return _velocities.at(index);
+}
+
+const Vector3d& CGSpace::velocity(std::size_t index) const {
     return _velocities.at(index);
 }
 

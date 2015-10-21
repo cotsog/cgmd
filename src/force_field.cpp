@@ -1,4 +1,5 @@
 #include "force_field.hpp"
+#include <cmath>
 
 bool BondingForceField::add_bond(const BeadType& type0, const BeadType& type1,
         double r, double k) {
@@ -28,4 +29,22 @@ double BondingForceField::get_k(const BeadType& type0, const BeadType& type1) co
     if (itr == _k_map.end())
         return 0.0; // Throwing the Exception is better.
     return (*itr).second;
+}
+
+double BondingForceField::calculate_energy(const CGSpace& space) const {
+    double energy(0);
+
+    std::set<CGSpace::bond_pair> bond_list(space.list_bonds());
+    for (auto itr(bond_list.begin()); itr != bond_list.end(); ++itr) {
+        const std::size_t former((*itr).first),
+                          latter((*itr).second);
+        const BeadType former_type(space.type(former)),
+                       latter_type(space.type(latter));
+        const double R(norm(space.coordinate(former) - space.coordinate(latter)));
+        const double r(get_r(former_type, latter_type));
+        const double k(get_k(former_type, latter_type));
+        energy += k * pow(R - r, 2.0);
+    }
+
+    return energy;
 }

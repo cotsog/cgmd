@@ -1,4 +1,6 @@
 #include <gtest/gtest.h>
+#include <cmath>
+#include "cgspace.hpp"
 #include "force_field.hpp"
 
 namespace {
@@ -37,6 +39,24 @@ TEST_F(BondingForceFieldTest, K) {
     EXPECT_EQ(2.5, field.get_k(BeadType("Bead0"), BeadType("Bead2")));
     EXPECT_EQ(2.5, field.get_k(BeadType("Bead2"), BeadType("Bead0")));
 }
+
+TEST_F(BondingForceFieldTest, CalculateEnergy) {
+    Molecule mol(2);
+    mol.type(0) = BeadType("Bead0");
+    mol.type(1) = BeadType("Bead1");
+    mol.coordinate(0) = Vector3d(0,0,0);
+    mol.coordinate(1) = Vector3d(2,0,0);
+    mol.add_bond(0,1);
+    CGSpace space;
+    space.add_molecule(mol);
+
+    EXPECT_EQ(2.0*pow(2-0.5,2), field.calculate_energy(space));
+}
+
+/*
+TEST_F(BondingForceFieldTest, CalculateForce) {
+}
+*/
 
 }
 
