@@ -10,9 +10,9 @@ protected:
         mol.coordinate(0) = Vector3d(1,0,0);
         mol.coordinate(1) = Vector3d(2,0,0);
         mol.coordinate(2) = Vector3d(4,0,0);
-        mol.type(0) = "HYDROPHILIC";
-        mol.type(1) = "HYDROPHOBIC";
-        mol.type(2) = "HYDROPHOBIC";
+        mol.type(0) = BeadType("HYDROPHILIC");
+        mol.type(1) = BeadType("HYDROPHOBIC");
+        mol.type(2) = BeadType("HYDROPHOBIC");
 
         mol.add_bond(0,1);
         mol.add_bond(1,2);
@@ -38,9 +38,9 @@ TEST_F(MoleculeTest, Coordinate) {
 
 TEST_F(MoleculeTest, Type) {
     ASSERT_EQ(3, mol.num_beads());
-    EXPECT_EQ("HYDROPHILIC", mol.type(0));
-    EXPECT_EQ("HYDROPHOBIC", mol.type(1));
-    EXPECT_EQ("HYDROPHOBIC", mol.type(2));
+    EXPECT_EQ(BeadType("HYDROPHILIC"), mol.type(0));
+    EXPECT_EQ(BeadType("HYDROPHOBIC"), mol.type(1));
+    EXPECT_EQ(BeadType("HYDROPHOBIC"), mol.type(2));
 }
 
 TEST_F(MoleculeTest, Bond) {

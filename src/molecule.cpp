@@ -2,12 +2,12 @@
 
 Molecule::Molecule() {
     _coordinates = std::vector<Vector3d>();
-    _types = std::vector<std::string>();
+    _types = std::vector<BeadType>();
 }
 
 Molecule::Molecule(std::size_t num_beads) {
     _coordinates = std::vector<Vector3d>(num_beads, Vector3d());
-    _types = std::vector<std::string>(num_beads, "");
+    _types = std::vector<BeadType>(num_beads, "");
 }
 
 std::size_t Molecule::num_beads() const {
@@ -22,11 +22,11 @@ const Vector3d& Molecule::coordinate(std::size_t index) const {
     return _coordinates.at(index);
 }
 
-std::string& Molecule::type(std::size_t index) {
+BeadType& Molecule::type(std::size_t index) {
     return _types.at(index);
 }
 
-const std::string& Molecule::type(std::size_t index) const {
+const BeadType& Molecule::type(std::size_t index) const {
     return _types.at(index);
 }
 

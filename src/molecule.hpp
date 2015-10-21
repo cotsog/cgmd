@@ -2,7 +2,7 @@
 #define __MOLECULE_HPP
 
 #include "vector3d.hpp"
-#include <string>
+#include "bead_type.hpp"
 #include <vector>
 #include <set>
 
@@ -16,14 +16,14 @@ struct Molecule {
     std::size_t num_beads() const;
     Vector3d& coordinate(std::size_t index);
     const Vector3d& coordinate(std::size_t index) const;
-    std::string& type(std::size_t index);
-    const std::string& type(std::size_t index) const;
+    BeadType& type(std::size_t index);
+    const BeadType& type(std::size_t index) const;
     void add_bond(std::size_t i, std::size_t j);
     std::set<bond_pair> list_bonds() const;
 
 protected:
     std::vector<Vector3d> _coordinates;
-    std::vector<std::string> _types;
+    std::vector<BeadType> _types;
     std::set<bond_pair> _bonds;
 };
 

@@ -7,7 +7,7 @@ protected:
         mol0 = Molecule(10);
         for (int i(0); i < 10; ++i) {
             mol0.coordinate(i) = Vector3d(i,0,0);
-            mol0.type(i) = "BEAD0";
+            mol0.type(i) = BeadType("BEAD0");
             if (i > 0)
                 mol0.add_bond(i-1, i);
         }
@@ -15,7 +15,7 @@ protected:
         mol1 = Molecule(5);
         for (int i(0); i < 5; ++i) {
             mol1.coordinate(i) = Vector3d(0,i,-1);
-            mol1.type(i) = "BEAD1";
+            mol1.type(i) = BeadType("BEAD1");
         }
         mol1.add_bond(0,1);
         mol1.add_bond(0,2);

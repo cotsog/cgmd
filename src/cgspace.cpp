@@ -43,7 +43,7 @@ Vector3d& CGSpace::velocity(std::size_t index) {
     return _velocities.at(index);
 }
 
-std::string CGSpace::type(std::size_t index) const {
+BeadType CGSpace::type(std::size_t index) const {
     return _types.at(index);
 }
 
