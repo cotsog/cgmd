@@ -1,5 +1,5 @@
 set(TEST_NAMES
-    vector3d_test molecule_test cgspace_test model_test
+    bead_type_test vector3d_test molecule_test cgspace_test model_test
     )
 
 set(GTEST_ROOT $ENV{HOME}/local/gtest)
