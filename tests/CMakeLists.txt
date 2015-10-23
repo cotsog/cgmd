@@ -3,15 +3,16 @@ set(TEST_NAMES
     force_field_test
     )
 
-set(GTEST_ROOT $ENV{HOME}/local/gtest)
+find_package(GTest REQUIRED)
+
 include_directories(
-    ${GTEST_ROOT}/include
+    ${GTEST_INCLUDE_DIRS}
     ../src
-    )
+)
 set(test_libraries
     pthread
-    ${GTEST_ROOT}/libgtest.a
-    ${GTEST_ROOT}/libgtest_main.a)
+    ${GTEST_BOTH_LIBRARIES}
+)
 
 foreach(TEST_NAME ${TEST_NAMES})
     add_executable(${TEST_NAME} ${TEST_NAME}.cpp)
