@@ -39,3 +39,24 @@ double norm_sq(const Vector3d& vec) {
 double norm(const Vector3d& vec) {
     return sqrt(norm_sq(vec));
 }
+
+vector_list operator+(const vector_list& lhs, const vector_list& rhs) {
+    if (lhs.size() != rhs.size())
+        return vector_list();
+    std::size_t size(lhs.size());
+    vector_list sum(size, Vector3d(0,0,0));
+    for (std::size_t i(0); i < size; ++i)
+        sum[i] = lhs[i] + rhs[i];
+    return sum;
+}
+
+vector_list operator-(const vector_list& lhs, const vector_list& rhs) {
+    if (lhs.size() != rhs.size())
+        return vector_list();
+    std::size_t size(lhs.size());
+    vector_list difference(size, Vector3d(0,0,0));
+    for (std::size_t i(0); i < size; ++i)
+        difference[i] = lhs[i] - rhs[i];
+    return difference;
+}
+

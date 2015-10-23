@@ -14,6 +14,8 @@ struct Vector3d {
         : x(vec.x), y(vec.y), z(vec.z) {}
 };
 
+using vector_list = std::vector<Vector3d>;
+
 bool operator==(const Vector3d& lhs, const Vector3d& rhs);
 
 Vector3d operator+(const Vector3d& lhs, const Vector3d& rhs);
@@ -25,5 +27,8 @@ double dot(const Vector3d& lhs, const Vector3d& rhs);
 Vector3d cross(const Vector3d& lhs, const Vector3d& rhs);
 double norm_sq(const Vector3d& vec);
 double norm(const Vector3d& vec);
+
+vector_list operator+(const vector_list& lhs, const vector_list& rhs);
+vector_list operator-(const vector_list& lhs, const vector_list& rhs);
 
 #endif /* __MY_VECTOR3D_HPP */

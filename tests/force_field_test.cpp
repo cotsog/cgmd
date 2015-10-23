@@ -68,7 +68,7 @@ TEST_F(BondingForceFieldTest, CalculateForce) {
     space.add_molecule(mol);
 
     const double strength(2.0*2.0*(2-0.5));
-    std::vector<Vector3d> expected(2);
+    vector_list expected(2);
     expected.at(0) = Vector3d(1,0,0) * strength;
     expected.at(1) = expected.at(0) * (-1);
     EXPECT_EQ(expected, field.calculate_force(space));

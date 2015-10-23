@@ -22,7 +22,7 @@ struct Molecule {
     std::set<bond_pair> list_bonds() const;
 
 protected:
-    std::vector<Vector3d> _coordinates;
+    vector_list _coordinates;
     std::vector<BeadType> _types;
     std::set<bond_pair> _bonds;
 };

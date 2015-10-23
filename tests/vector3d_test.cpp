@@ -50,6 +50,30 @@ TEST(Vector3dTest, Norm) {
     EXPECT_EQ(sqrt(14), norm(y));
 }
 
+TEST(Vector3dListTest, Plus) {
+    vector_list x, y, expected;
+    x.push_back(Vector3d(0,1,0));
+    x.push_back(Vector3d(0,0,1));
+    y.push_back(Vector3d(1,2,0));
+    y.push_back(Vector3d(0,2,0));
+    expected.push_back(Vector3d(1,3,0));
+    expected.push_back(Vector3d(0,2,1));
+    EXPECT_EQ(expected, x + y);
+
+}
+
+TEST(Vector3dListTest, Minus) {
+    vector_list x, y, expected;
+    x.push_back(Vector3d(0,1,0));
+    x.push_back(Vector3d(0,0,1));
+    y.push_back(Vector3d(1,2,0));
+    y.push_back(Vector3d(0,2,0));
+    expected.push_back(Vector3d(-1,-1,0));
+    expected.push_back(Vector3d(0,-2,1));
+    EXPECT_EQ(expected, x - y);
+
+}
+
 }
 
 int main(int argc, char **argv) {

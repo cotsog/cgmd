@@ -26,8 +26,8 @@ public:
     const double& t() const;
 
 protected:
-    std::vector<Vector3d> _coordinates;
-    std::vector<Vector3d> _velocities;
+    vector_list _coordinates;
+    vector_list _velocities;
     std::vector<BeadType> _types;
     std::set<bond_pair> _bonds;
     double _t;

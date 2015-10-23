@@ -1,12 +1,12 @@
 #include "molecule.hpp"
 
 Molecule::Molecule() {
-    _coordinates = std::vector<Vector3d>();
+    _coordinates = vector_list();
     _types = std::vector<BeadType>();
 }
 
 Molecule::Molecule(std::size_t num_beads) {
-    _coordinates = std::vector<Vector3d>(num_beads, Vector3d());
+    _coordinates = vector_list(num_beads, Vector3d());
     _types = std::vector<BeadType>(num_beads, "");
 }
 

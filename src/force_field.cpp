@@ -49,8 +49,8 @@ double BondingForceField::calculate_energy(const CGSpace& space) const {
     return energy;
 }
 
-std::vector<Vector3d> BondingForceField::calculate_force(const CGSpace& space) const {
-    std::vector<Vector3d> force_list(space.num_beads(), Vector3d(0,0,0));
+vector_list BondingForceField::calculate_force(const CGSpace& space) const {
+    vector_list force_list(space.num_beads(), Vector3d(0,0,0));
 
     std::set<CGSpace::bond_pair> bond_list(space.list_bonds());
     for (auto itr(bond_list.begin()); itr != bond_list.end(); ++itr) {
