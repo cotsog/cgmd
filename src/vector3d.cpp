@@ -21,6 +21,14 @@ Vector3d operator/(const Vector3d& lhs, const double& k) {
     return Vector3d(lhs.x/k, lhs.y/k, lhs.z/k);
 }
 
+Vector3d operator+=(const Vector3d& lhs, const Vector3d& rhs) {
+    return lhs + rhs;
+}
+
+Vector3d operator-=(const Vector3d& lhs, const Vector3d& rhs) {
+    return lhs - rhs;
+}
+
 double dot(const Vector3d& lhs, const Vector3d& rhs) {
     return lhs.x*rhs.x + lhs.y*rhs.y + lhs.z*rhs.z;
 }
@@ -58,5 +66,13 @@ vector_list operator-(const vector_list& lhs, const vector_list& rhs) {
     for (std::size_t i(0); i < size; ++i)
         difference[i] = lhs[i] - rhs[i];
     return difference;
+}
+
+vector_list operator+=(const vector_list& lhs, const vector_list& rhs) {
+    return lhs + rhs;
+}
+
+vector_list operator-=(const vector_list& lhs, const vector_list& rhs) {
+    return lhs - rhs;
 }
 
