@@ -1,5 +1,7 @@
 #include <gtest/gtest.h>
+#include <memory>
 #include "bead_type.hpp"
+#include "force_field.hpp"
 #include "model.hpp"
 
 namespace {
@@ -40,6 +42,14 @@ TEST_F(ModelTest, Mass) {
 TEST_F(ModelTest, Friction) {
     EXPECT_EQ(0.4, model.get_friction(BeadType("Bead0")));
     EXPECT_EQ(0.3, model.get_friction(BeadType("Bead1")));
+}
+
+TEST_F(ModelTest, ForceField) {
+    std::shared_ptr<BondingForceField> bfield(new BondingForceField());
+    bfield->add_bond(BeadType("Bead0"), BeadType("Bead1"),
+        /* r= */ 0.5, /* k= */ 2.0);
+    model.add_force_field(bfield);
+    EXPECT_EQ(1, model.list_force_fields().size());
 }
 
 }

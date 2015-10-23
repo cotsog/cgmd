@@ -32,3 +32,11 @@ double LangevinModel::get_friction(const BeadType& type) const {
     return (*itr).second;
 }
 
+void LangevinModel::add_force_field(std::shared_ptr<ForceField> ffield) {
+    _force_fields.push_back(ffield);
+}
+
+const LangevinModel::force_field_container& LangevinModel::list_force_fields() const {
+    return _force_fields;
+}
+
