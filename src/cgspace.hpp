@@ -22,12 +22,15 @@ public:
     BeadType type(std::size_t index) const;
     std::size_t num_beads() const;
     std::set<bond_pair> list_bonds() const;
+    double& t();
+    const double& t() const;
 
 protected:
     std::vector<Vector3d> _coordinates;
     std::vector<Vector3d> _velocities;
     std::vector<BeadType> _types;
     std::set<bond_pair> _bonds;
+    double _t;
 };
 
 #endif /* __CGSPACE_HPP*/

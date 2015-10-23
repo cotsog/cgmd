@@ -62,3 +62,11 @@ std::size_t CGSpace::num_beads() const {
 std::set<CGSpace::bond_pair> CGSpace::list_bonds() const {
     return _bonds;
 }
+
+double& CGSpace::t() {
+    return _t;
+}
+
+const double& CGSpace::t() const {
+    return _t;
+}
