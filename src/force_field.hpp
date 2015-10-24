@@ -8,6 +8,7 @@
 #include <map>
 
 class ForceField {
+public:
     virtual double calculate_energy(const CGSpace& space) const = 0;
     virtual vector_list calculate_force(const CGSpace& space) const = 0;
 };
