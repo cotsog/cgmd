@@ -49,10 +49,11 @@ void LangevinStepper::step() {
 
     // Update Velocity
     for (std::size_t i(0); i < num_beads; ++i)
-        _space->velocity(i) = _space->velocity(i) * _const_term4.at(i)
+        _space->velocity(i) = _space->velocity(i) * _const_term2.at(i)
             + (_acceleration_list.at(i) + new_acceleration.at(i)) * _const_term3.at(i);
 
     _space->t() += _dt;
+    _acceleration_list = new_acceleration;
 }
 
 double LangevinStepper::get_unit_white_noise() {

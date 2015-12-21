@@ -32,7 +32,6 @@ protected:
     std::mt19937 _gen;
     double _dt;
     double _T;
-    vector_list _force_list;
     vector_list _acceleration_list;
     std::vector<double> _deviation;   // == rlan_const(1)
     std::vector<double> _const_term2; // == rlan_const(2)
