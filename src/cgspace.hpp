@@ -12,6 +12,8 @@ public:
     CGSpace();
     CGSpace(const std::size_t& size);
     void reset(const std::size_t& size);
+    std::string& symbol(std::size_t index);
+    const std::string& symbol(std::size_t index) const;
     Vector3d& coordinate(std::size_t index);
     const Vector3d& coordinate(std::size_t index) const;
     Vector3d& velocity(std::size_t index);
@@ -21,6 +23,7 @@ public:
     const double& t() const;
 
 protected:
+    std::vector<std::string> _symbols;
     vector_list _coordinates;
     vector_list _velocities;
     double _t;

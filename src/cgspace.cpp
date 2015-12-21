@@ -7,8 +7,20 @@ CGSpace::CGSpace(const std::size_t& size) {
 }
 
 void CGSpace::reset(const std::size_t& size) {
-    _coordinates = vector_list(size);
-    _velocities = vector_list(size);
+    _symbols.clear();
+    _coordinates.clear();
+    _velocities.clear();
+    _symbols.resize(size, "");
+    _coordinates.resize(size, Vector3d(0,0,0));
+    _velocities.resize(size, Vector3d(0,0,0));
+}
+
+std::string& CGSpace::symbol(std::size_t index) {
+    return _symbols.at(index);
+}
+
+const std::string& CGSpace::symbol(std::size_t index) const {
+    return _symbols.at(index);
 }
 
 Vector3d& CGSpace::coordinate(std::size_t index) {
