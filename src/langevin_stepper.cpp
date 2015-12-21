@@ -4,7 +4,7 @@
 LangevinStepper::LangevinStepper() {
 }
 
-LangevinStepper::LangevinStepper(std::shared_ptr<CGSpace> space,
+LangevinStepper::LangevinStepper(std::shared_ptr<Space> space,
     std::shared_ptr<Model> model, std::mt19937 random_generator, double dt, double T) :
     _space(space), _model(model), _dist(0,1), _gen(random_generator), _dt(dt), _T(T) {
     const std::size_t num_beads(_space->num_beads());

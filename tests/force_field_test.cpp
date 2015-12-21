@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 #include <cmath>
-#include "cgspace.hpp"
+#include "space.hpp"
 #include "force_field.hpp"
 
 namespace {
@@ -41,7 +41,7 @@ TEST_F(BondingForceFieldTest, K) {
 }
 
 TEST_F(BondingForceFieldTest, CalculateEnergy) {
-    CGSpace space(2);
+    Space space(2);
     space.coordinate(0) = Vector3d(0,0,0);
     space.coordinate(1) = Vector3d(2,0,0);
 
@@ -49,7 +49,7 @@ TEST_F(BondingForceFieldTest, CalculateEnergy) {
 }
 
 TEST_F(BondingForceFieldTest, CalculateForce) {
-    CGSpace space(2);
+    Space space(2);
     space.coordinate(0) = Vector3d(0,0,0);
     space.coordinate(1) = Vector3d(2,0,0);
 

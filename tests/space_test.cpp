@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
-#include "cgspace.hpp"
+#include "space.hpp"
 
-class CGSpaceTest : public ::testing::Test {
+class SpaceTest : public ::testing::Test {
 protected:
     virtual void SetUp() {
         space.reset(15);
@@ -21,25 +21,25 @@ protected:
 
     // virtual void TearDown() {}
 
-    CGSpace space;
+    Space space;
 };
 
-TEST_F(CGSpaceTest, NumBeads) {
+TEST_F(SpaceTest, NumBeads) {
     EXPECT_EQ(15, space.num_beads());
 }
 
-TEST_F(CGSpaceTest, Symbols) {
+TEST_F(SpaceTest, Symbols) {
     EXPECT_EQ("A", space.symbol(1));
     space.symbol(1) = "B";
     EXPECT_EQ("B", space.symbol(1));
 }
 
-TEST_F(CGSpaceTest, Coordinates) {
+TEST_F(SpaceTest, Coordinates) {
     EXPECT_EQ(Vector3d(4,0,0), space.coordinate(4));
     EXPECT_EQ(Vector3d(2,2,3), space.coordinate(14));
 }
 
-TEST_F(CGSpaceTest, Veclotities) {
+TEST_F(SpaceTest, Veclotities) {
     EXPECT_EQ(Vector3d(0,0,0), space.velocity(11));
     space.velocity(11) = Vector3d(1,1,1);
     EXPECT_EQ(Vector3d(1,1,1), space.velocity(11));

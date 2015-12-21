@@ -16,8 +16,8 @@ public:
     double get_dt() const;
     double get_mass(const std::size_t& id) const;
     double get_friction(const std::size_t& id) const;
-    vector_list calculate_force(std::shared_ptr<CGSpace> space) const;
-    double calculate_energy(std::shared_ptr<CGSpace> space) const;
+    vector_list calculate_force(std::shared_ptr<Space> space) const;
+    double calculate_energy(std::shared_ptr<Space> space) const;
 
     void add_potential(std::shared_ptr<ForceField> potential);
     bool remove_potential(const std::size_t& i);

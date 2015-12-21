@@ -36,7 +36,7 @@ double BondingForceField::get_k(const std::size_t& id0, const std::size_t& id1) 
     return (*itr).second.second;
 }
 
-double BondingForceField::calculate_energy(const CGSpace& space) const {
+double BondingForceField::calculate_energy(const Space& space) const {
     double energy(0);
 
     for (auto itr(_map.begin()); itr != _map.end(); ++itr) {
@@ -54,7 +54,7 @@ double BondingForceField::calculate_energy(const CGSpace& space) const {
     return energy;
 }
 
-vector_list BondingForceField::calculate_force(const CGSpace& space) const {
+vector_list BondingForceField::calculate_force(const Space& space) const {
     vector_list force_list(space.num_beads(), Vector3d(0,0,0));
 
     for (auto itr(_map.begin()); itr != _map.end(); ++itr) {

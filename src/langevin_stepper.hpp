@@ -3,7 +3,7 @@
 
 #include <memory>
 #include <random>
-#include "cgspace.hpp"
+#include "space.hpp"
 #include "model.hpp"
 
 class Stepper {
@@ -15,7 +15,7 @@ class LangevinStepper : public Stepper {
 public:
     LangevinStepper();
     LangevinStepper(
-        std::shared_ptr<CGSpace> space,
+        std::shared_ptr<Space> space,
         std::shared_ptr<Model> model,
         std::mt19937 random_generator,
         double dt, double T);
@@ -26,7 +26,7 @@ protected:
     double get_unit_white_noise();
     Vector3d get_unit_random_force();
 
-    std::shared_ptr<CGSpace> _space;
+    std::shared_ptr<Space> _space;
     std::shared_ptr<Model> _model;
     std::normal_distribution<> _dist;
     std::mt19937 _gen;

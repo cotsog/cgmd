@@ -6,11 +6,11 @@
 #include <set>
 #include "vector3d.hpp"
 
-class CGSpace {
+class Space {
 public:
 
-    CGSpace();
-    CGSpace(const std::size_t& size);
+    Space();
+    Space(const std::size_t& size);
     void reset(const std::size_t& size);
     std::string& symbol(std::size_t index);
     const std::string& symbol(std::size_t index) const;
