@@ -23,8 +23,8 @@ Vector3d operator-(const Vector3d& lhs, const Vector3d& rhs);
 Vector3d operator*(const Vector3d& lhs, const double& rhs);
 Vector3d operator/(const Vector3d& lhs, const double& rhs);
 
-Vector3d operator+=(const Vector3d& lhs, const Vector3d& rhs);
-Vector3d operator-=(const Vector3d& lhs, const Vector3d& rhs);
+Vector3d operator+=(Vector3d& lhs, const Vector3d& rhs);
+Vector3d operator-=(Vector3d& lhs, const Vector3d& rhs);
 
 double dot(const Vector3d& lhs, const Vector3d& rhs);
 Vector3d cross(const Vector3d& lhs, const Vector3d& rhs);
@@ -34,7 +34,7 @@ double norm(const Vector3d& vec);
 vector_list operator+(const vector_list& lhs, const vector_list& rhs);
 vector_list operator-(const vector_list& lhs, const vector_list& rhs);
 
-vector_list operator+=(const vector_list& lhs, const vector_list& rhs);
-vector_list operator-=(const vector_list& lhs, const vector_list& rhs);
+vector_list operator+=(vector_list& lhs, const vector_list& rhs);
+vector_list operator-=(vector_list& lhs, const vector_list& rhs);
 
 #endif /* __MY_VECTOR3D_HPP */

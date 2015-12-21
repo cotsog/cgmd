@@ -12,7 +12,7 @@ protected:
     virtual void SetUp() {
         gen = std::mt19937(rnd());
         space = std::make_shared<CGSpace>();
-        model = std::make_shared<LangevinModel>();
+        model = std::make_shared<Model>();
         stepper = LangevinStepper(space, model, gen,
                 /* dt= */0.2, /* T= */200);
     }
@@ -21,7 +21,7 @@ protected:
 
     std::random_device rnd;
     std::mt19937 gen;
-    std::shared_ptr<LangevinModel> model;
+    std::shared_ptr<Model> model;
     std::shared_ptr<CGSpace> space;
     LangevinStepper stepper;
 };
@@ -29,6 +29,9 @@ protected:
 TEST_F(LangevinStepperTest, Step) {
     stepper.step();
     EXPECT_EQ(0.2, space->t());
+}
+
+TEST_F(LangevinStepperTest, Neighbor) {
 }
 
 }

@@ -8,12 +8,16 @@ TEST(Vector3dTest, Plus) {
     Vector3d x(1,2,3), y(4,5,5);
     EXPECT_EQ(Vector3d(5,7,8), x + y);
     EXPECT_EQ(Vector3d(5,7,8), y + x);
+    x += y;
+    EXPECT_EQ(Vector3d(5,7,8), x);
 }
 
 TEST(Vector3dTest, Minus) {
     Vector3d x(4,5,5), y(1,2,3);
     EXPECT_EQ(Vector3d(3,3,2), x - y);
     EXPECT_EQ(Vector3d(-3,-3,-2), y - x);
+    x -= y;
+    EXPECT_EQ(Vector3d(3,3,2), x);
 }
 
 TEST(Vector3dTest, Multiple) {
@@ -59,7 +63,8 @@ TEST(Vector3dListTest, Plus) {
     expected.push_back(Vector3d(1,3,0));
     expected.push_back(Vector3d(0,2,1));
     EXPECT_EQ(expected, x + y);
-
+    x += y;
+    EXPECT_EQ(expected, x);
 }
 
 TEST(Vector3dListTest, Minus) {
@@ -71,7 +76,8 @@ TEST(Vector3dListTest, Minus) {
     expected.push_back(Vector3d(-1,-1,0));
     expected.push_back(Vector3d(0,-2,1));
     EXPECT_EQ(expected, x - y);
-
+    x -= y;
+    //EXPECT_EQ(expected, x);
 }
 
 }

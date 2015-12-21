@@ -5,7 +5,7 @@ LangevinStepper::LangevinStepper() {
 }
 
 LangevinStepper::LangevinStepper(std::shared_ptr<CGSpace> space,
-    std::shared_ptr<LangevinModel> model, std::mt19937 random_generator, double dt, double T) :
+    std::shared_ptr<Model> model, std::mt19937 random_generator, double dt, double T) :
     _space(space), _model(model), _dist(0,1), _gen(random_generator), _dt(dt), _T(T) {
     const std::size_t num_beads(_space->num_beads());
 
@@ -16,15 +16,14 @@ LangevinStepper::LangevinStepper(std::shared_ptr<CGSpace> space,
     _const_term4 = std::vector<double>(num_beads);
     _mass_list = std::vector<double>(num_beads);
 
-    for (std::size_t i(0); i < num_beads; ++i) {
-        const BeadType type(_space->type(i));
-        const double friction(_model->get_friction(type));
-        const double mass(_model->get_mass(type));
-        _deviation[i] = sqrt(2*friction*kB*_T/mass/_dt);
-        _const_term2[i] = (1-friction*_dt/2)*(1-friction*_dt/2+pow(friction*dt/2,2));
-        _const_term3[i] = _dt/2*(1-friction*_dt/2);
-        _const_term4[i] = _dt*(1-friction*_dt/2);
-        _mass_list[i] = mass;
+    for (std::size_t id(0); id < num_beads; ++id) {
+        const double friction(_model->get_friction(id));
+        const double mass(_model->get_mass(id));
+        _deviation[id] = sqrt(2*friction*kB*_T/mass/_dt);
+        _const_term2[id] = (1-friction*_dt/2)*(1-friction*_dt/2+pow(friction*dt/2,2));
+        _const_term3[id] = _dt/2*(1-friction*_dt/2);
+        _const_term4[id] = _dt*(1-friction*_dt/2);
+        _mass_list[id] = mass;
     }
 }
 
@@ -38,7 +37,8 @@ void LangevinStepper::step() {
 
     // Update Force
     vector_list force_list(num_beads, Vector3d(0,0,0));
-    for (auto itr(_model->list_force_fields().begin()); itr != _model->list_force_fields().end(); ++itr)
+    const Model::potential_container potentials(_model->list_potentials());
+    for (auto itr(potentials.begin()); itr != potentials.end(); ++itr)
         force_list += (*itr)->calculate_force(*(_space.get()));
 
     vector_list new_acceleration(num_beads, Vector3d(0,0,0));

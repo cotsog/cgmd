@@ -1,42 +1,50 @@
 #include "model.hpp"
 
-void LangevinModel::set_dt(double dt) {
+void Model::set_dt(double dt) {
     _dt = dt;
 }
 
-bool LangevinModel::add_bead(BeadType type, double mass, double friction) {
-    if (_mass.find(type) != _mass.end())
-        return false;
-    if (_frictions.find(type) != _frictions.end())
-        return false;
-    _mass.insert(std::pair<BeadType, double>(type, mass));
-    _frictions.insert(std::pair<BeadType, double>(type ,friction));
-    return true;
+void Model::reset(const std::size_t& size) {
+    _property_list.clear();
+    _property_list.resize(size, std::make_pair(0.0, 0.0));
 }
 
-double LangevinModel::get_dt() const {
+void Model::set_property(const std::size_t& id, double mass, double friction) {
+    _property_list.at(id) = std::make_pair(mass, friction);
+}
+
+double Model::get_dt() const {
     return _dt;
 }
 
-double LangevinModel::get_mass(const BeadType& type) const {
-    auto itr(_mass.find(type));
-    if (itr == _mass.end())
+bool Model::is_in_range(const std::size_t& id) const {
+    return (id >= 0 && id < _property_list.size());
+}
+
+double Model::get_mass(const std::size_t& id) const {
+    if (!is_in_range(id))
         return 0.0; // Throwing the Exception is better.
-    return (*itr).second;
+    return _property_list.at(id).first;
 }
 
-double LangevinModel::get_friction(const BeadType& type) const {
-    auto itr(_frictions.find(type));
-    if (itr == _frictions.end())
+double Model::get_friction(const std::size_t& id) const {
+    if (!is_in_range(id))
         return 0.0; // Throwing the Exception is better.
-    return (*itr).second;
+    return _property_list.at(id).second;
 }
 
-void LangevinModel::add_force_field(std::shared_ptr<ForceField> ffield) {
-    _force_fields.push_back(ffield);
+void Model::add_potential(std::shared_ptr<ForceField> potential) {
+    _potentials.push_back(potential);
 }
 
-const LangevinModel::force_field_container& LangevinModel::list_force_fields() const {
-    return _force_fields;
+bool Model::remove_potential(const std::size_t& i) {
+    if (i < 0 || i >= _potentials.size())
+        return false;
+    _potentials.erase(_potentials.begin()+i);
+    return true;
+}
+
+const Model::potential_container& Model::list_potentials() const {
+    return _potentials;
 }
 
