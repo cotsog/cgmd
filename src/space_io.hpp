@@ -1,12 +1,16 @@
 #ifndef __SPACE_IO_HPP
 #define __SPACE_IO_HPP
 
-#include <string>
 #include "space.hpp"
 
-class SpaceSaver {
+class SpaceWriter {
 public:
-    virtual void save(const Space& space) = 0;
+    virtual void save(const Space& space) const = 0;
+};
+
+class SpaceReader {
+public:
+    virtual void load(Space& space) const = 0;
 };
 
 #endif /* __SPACE_IO_HPP */

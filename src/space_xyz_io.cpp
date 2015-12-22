@@ -1,10 +1,13 @@
 #include "space_xyz_io.hpp"
 #include <fstream>
 #include <iomanip>
+#include <sstream>
+#include <list>
+#include <iostream>
 
 SpaceXYZWriter::SpaceXYZWriter(const std::string& fname) : _fname(fname) {}
 
-void SpaceXYZWriter::save(const Space& space) {
+void SpaceXYZWriter::save(const Space& space) const {
     std::ofstream ofs(_fname);
     const std::size_t num(space.num_beads());
     ofs << num << std::endl; // # of beads
@@ -17,5 +20,42 @@ void SpaceXYZWriter::save(const Space& space) {
             << " " << std::setw(15) << std::right << std::fixed << std::setprecision(6) << coord.y
             << " " << std::setw(15) << std::right << std::fixed << std::setprecision(6) << coord.z
             << std::endl;
+    }
+}
+
+SpaceXYZReader::SpaceXYZReader(const std::string& fname) : _fname(fname) {}
+
+void SpaceXYZReader::load(Space& space) const {
+    std::ifstream ifs(_fname);
+    std::string buffer;
+
+    std::getline(ifs, buffer);
+    const std::size_t num(stoi(buffer));
+    std::getline(ifs, buffer);
+    const std::string comment(buffer);
+
+    std::list<std::pair<std::string, Vector3d> > beads;
+
+    while (getline(ifs, buffer)) {
+        std::stringstream ss(buffer);
+
+        std::string symbol;
+        Vector3d vec;
+        ss >> symbol;
+        ss >> vec.x;
+        ss >> vec.y;
+        ss >> vec.z;
+        beads.push_back(std::make_pair(symbol, vec));
+    }
+
+    if (beads.size() != num)
+        return; // Should be assert
+
+    std::size_t id(0);
+    space.reset(num);
+    for (auto itr(beads.begin()); itr != beads.end(); ++itr) {
+        space.symbol(id) = (*itr).first;
+        space.coordinate(id) = (*itr).second;
+        ++id;
     }
 }

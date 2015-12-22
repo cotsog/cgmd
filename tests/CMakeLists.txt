@@ -1,5 +1,5 @@
 set(TEST_NAMES
-    vector3d_test space_test model_test
+    vector3d_test space_test model_test space_io_test
     force_field_test langevin_stepper_test
     )
 
